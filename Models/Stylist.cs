@@ -121,7 +121,7 @@ namespace HairSalon.Models
         }else if(scissors.prefix_2 == 0 && drop % 2 == 0)
         {
           var themod = db.prefix.Find(drop);
-          if(themod != null)
+          if(themod != null && drop != scissors.prefix_1 )
           {
             scissors.prefix_2 = themod.id;
             scissors.prefix_2_value = rnd.Next(themod.min_value, themod.max_value);
@@ -137,7 +137,7 @@ namespace HairSalon.Models
           }else if(scissors.prefix_2 == 0 && drop % 2 == 1)
           {
             var themod = db.suffix.Find(drop);
-            if(themod != null)
+            if(themod != null && drop != scissors.suffix_1)
             {
               scissors.suffix_2 = themod.id;
               scissors.suffix_2_value = rnd.Next(themod.min_value, themod.max_value);
@@ -153,14 +153,61 @@ namespace HairSalon.Models
 
     public int GetLuck()
     {
+      var db = new SalonContext();
       Random rnd = new Random();
       int luck = rnd.Next(2,6);
+      Scissors scissors = db.scissors.Find(this.scissors);
+      //This is bad, think of a better way to do this
+      if(scissors.suffix_1 > 7 && scissors.suffix_1 < 11)
+      {
+          luck += scissors.suffix_1_value;
+      }
+      if(scissors.suffix_2 > 7 && scissors.suffix_2 < 11)
+      {
+          luck += scissors.suffix_1_value;
+      }
+
       return luck;
     }
 
     public int GetDamage()
     {
+
+      var db = new SalonContext();
+      Scissors scissors = db.scissors.Find(this.scissors);
       int damage = level;
+      //This is bad, think of a better way to do this
+      if(scissors.suffix_1 > 0 && scissors.suffix_1 < 7)
+      {
+          if(scissors.suffix_1 % 2 == 1)
+          {
+            damage -= scissors.suffix_1_value;
+          }else{
+            damage += scissors.suffix_1_value;
+          }
+      }
+      if(scissors.suffix_2 > 7 && scissors.suffix_2 < 11)
+      {
+        if(scissors.suffix_2 % 2 == 1)
+        {
+          damage -= scissors.suffix_1_value;
+        }else{
+          damage += scissors.suffix_1_value;
+        }
+      }
+      if(scissors.prefix_1_value > 0)
+      {
+        damage += (damage * (scissors.prefix_1_value / 100));
+      }
+
+      if(scissors.prefix_2_value > 0)
+      {
+        damage += (damage * (scissors.prefix_2_value / 100));
+      }
+      if(damage < 1)
+      {
+        damage = 1;
+      }
       return damage;
     }
     public Scissors GetScissors()
