@@ -1,0 +1,24 @@
+<h1>List of Stylists</h1>
+
+<ul>
+  @foreach(var stylist in Model)
+  {
+    <a href="Stylist/@stylist.id">@stylist.name Level: @stylist.level</a><br>
+  }
+</ul>
+
+<a href=/stylist/new>ADD A STYLIST</a><br>
+
+@if(Model.Count > 0)
+{
+  <br><a href=/client/new>ADD A CLIENT</a>
+
+}
+<a href=/specialty/>VIEW SPECIALTIES</a>
+<form class="" action="/Stylist/Delete" method="post">
+  <button type="submit">Remove All Stylists</button>
+</form>
+
+<form class="" action="/Client/Delete" method="post">
+  <button type="submit">Remove All Clients</button>
+</form>
