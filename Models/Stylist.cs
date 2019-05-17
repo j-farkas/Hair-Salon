@@ -109,7 +109,7 @@ namespace HairSalon.Models
       Scissors scissors = new Scissors{prefix_1 = 0, prefix_2 = 0, suffix_1 = 0, suffix_2 = 0};
       for(int i = 0; i < rolls; i++)
       {
-        int drop = (rnd.Next(0,10000)) % (30);
+        int drop = (rnd.Next(0,10000)) % (16);
         if(scissors.prefix_1 == 0 && drop % 2 == 0)
         {
           var themod = db.prefix.Find(drop);
