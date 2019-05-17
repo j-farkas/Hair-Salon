@@ -38,5 +38,15 @@ namespace HairSalon.Controllers
         return RedirectToAction("Index");
     }
 
+    [HttpPost("/Specialty/{id}/Stylist")]
+    public ActionResult AddSpecialtyToStylist(int id, int stylistId)
+    {
+        var db = new SalonContext();
+        Join addSpecialty = new Join{specialty_id = id, stylist_id = stylistId};
+        db.join.Add(addSpecialty);
+        db.SaveChanges();
+        return RedirectToAction("Show", new {id = id});
+    }
+
   }
 }

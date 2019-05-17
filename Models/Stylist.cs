@@ -40,6 +40,32 @@ namespace HairSalon.Models
       return allItems;
     }
 
+    public List<Specialty> GetRemainingSpecialties()
+    {
+
+      List<int> found = new List<int>{};
+      var db = new SalonContext();
+      List<Specialty> allItems = new List<Specialty>();
+      List<Join> joiner = db.join.ToList();
+      foreach (var item in joiner)
+      {
+
+        if(item.stylist_id == id && item.specialty_id > 0 )
+        {
+          found.Add(item.specialty_id);
+        }
+      }
+
+      foreach(Specialty spec in Specialty.GetAll())
+      {
+        if(found.Contains(spec.id) == false)
+        {
+          allItems.Add(spec);
+        }
+      }
+      return allItems;
+    }
+
     public static List<Stylist> GetAll()
     {
       return new SalonContext().stylist.ToList();

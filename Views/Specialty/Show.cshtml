@@ -8,3 +8,12 @@
     <a href="/Stylist/@stylist.id">@stylist.name</a><br>
   }
 </ul>
+<form class="" action="/Specialty/@Model.id/Stylist" method="post">
+  <button type="submit">Add Specialty to:</button>
+  <select name="stylistId">
+    @foreach(var stylist in @Model.GetRemainingStylists())
+    {
+      <option value="@stylist.id">@stylist.name</option>
+    }
+  </select>
+</form>

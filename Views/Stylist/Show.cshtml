@@ -20,6 +20,17 @@
   }
 </ul>
 
+
+<form class="" action="/Stylist/@Model.id/Specialty" method="post">
+  <button type="submit">Add Specialty</button>
+  <select name="specialtyid">
+    @foreach(var specialty in @Model.GetRemainingSpecialties())
+    {
+      <option value="@specialty.id">@specialty.name</option>
+    }
+  </select>
+  <br>
+</form>
 <form class="" action="/Stylist/@Model.id/Edit" method="post">
   <button type="submit">CHANGE THAT NAME</button>
   <input id="Name" name="Name" type="text"><br><br>
@@ -28,7 +39,6 @@
 <form class="" action="/Stylist/@Model.id/Delete" method="post">
   <button type="submit">Remove @Model.name</button>
 </form>
-
 
 <a href=/stylist/new>ADD A STYLIST</a>
 <a href=/client/new>ADD A CLIENT</a>
