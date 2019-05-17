@@ -11,6 +11,5 @@ namespace HairSalon.Models
     public int max_value { get; set; }
     public int min_value { get; set; }
     public int id { get; set; }
-
   }
 }
