@@ -19,10 +19,31 @@ namespace HairSalon.Models
     public int quality {get; set;}
     public int id { get; set; }
 
-    public int GetDamage()
+    public string GetScissorsName()
     {
-      return id;
+      string theScis = "";
+      var db = new SalonContext();
+      if(prefix_1 > 0)
+      {
+        theScis += db.prefix.Find(prefix_1).name;
+      }
+      if(prefix_2 > 0)
+      {
+        theScis += ", "+db.prefix.Find(prefix_2).name;
+      }
+      theScis += "Scissors";
+      if(suffix_1 > 0)
+      {
+        theScis += " Of " + db.suffix.Find(suffix_1).name;
+      }
+      if(prefix_2 > 0)
+      {
+        theScis += " and "+db.suffix.Find(suffix_2).name;
+      }
+      return theScis;
     }
+
+    
   }
 
 

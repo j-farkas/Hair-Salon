@@ -1,5 +1,3 @@
-
-
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System;
@@ -85,7 +83,6 @@ namespace HairSalon.Models
         //Client Dies
         theStylist.hair += theClient.hair;
         theClient.hair = 0;
-
       }else{
         //Client Lives
         theStylist.hair += damage;
@@ -103,11 +100,74 @@ namespace HairSalon.Models
       return level*level*10;
     }
 
+
+    public Scissors GetDrop()
+    {
+      var db = new SalonContext();
+      Random rnd = new Random();
+      int rolls = this.GetLuck();
+      Scissors scissors = new Scissors{prefix_1 = 0, prefix_2 = 0, suffix_1 = 0, suffix_2 = 0};
+      for(int i = 0; i < rolls; i++)
+      {
+        int drop = (rnd.Next(0,10000)) % (25);
+        if(scissors.prefix_1 == 0 && drop % 2 == 0)
+        {
+          var themod = db.prefix.Find(drop);
+          if(themod != null)
+          {
+            scissors.prefix_1 = themod.id;
+            scissors.prefix_1_value = rnd.Next(themod.min_value, themod.max_value);
+          }
+        }else if(scissors.prefix_2 == 0 && drop % 2 == 0)
+        {
+          var themod = db.prefix.Find(drop);
+          if(themod != null)
+          {
+            scissors.prefix_2 = themod.id;
+            scissors.prefix_2_value = rnd.Next(themod.min_value, themod.max_value);
+          }
+        }else if(scissors.suffix_1 == 0 && drop % 2 == 1)
+        {
+          var themod = db.suffix.Find(drop);
+          if(themod != null)
+          {
+            scissors.suffix_1 = themod.id;
+            scissors.suffix_1_value = rnd.Next(themod.min_value, themod.max_value);
+          }
+          }else if(scissors.prefix_2 == 0 && drop % 2 == 1)
+          {
+            var themod = db.suffix.Find(drop);
+            if(themod != null)
+            {
+              scissors.suffix_2 = themod.id;
+              scissors.suffix_2_value = rnd.Next(themod.min_value, themod.max_value);
+            }
+          }
+          scissors.name = scissors.GetScissorsName();
+      }
+      return scissors;
+    }
+
+    public int GetLuck()
+    {
+      Random rnd = new Random();
+      int luck = rnd.Next(2,6);
+      return luck;
+    }
+
     public int GetDamage()
     {
       int damage = level;
       return damage;
     }
+    public Scissors GetScissors()
+    {
+      return new SalonContext().scissors.Find(this.scissors);
+    }
 
+    public Scissors GetDropped()
+    {
+      return new SalonContext().scissors.Find(this.drop);
+    }
   }
 }
