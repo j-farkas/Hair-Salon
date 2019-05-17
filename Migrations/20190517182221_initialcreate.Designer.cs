@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace hair_salon.Migrations
 {
     [DbContext(typeof(SalonContext))]
-    [Migration("20190517171110_initialcreate")]
+    [Migration("20190517182221_initialcreate")]
     partial class initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,7 +62,9 @@ namespace hair_salon.Migrations
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("max_value");
+                    b.Property<int>("max_value");
+
+                    b.Property<int>("min_value");
 
                     b.Property<string>("name");
 
@@ -140,7 +142,9 @@ namespace hair_salon.Migrations
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("max_value");
+                    b.Property<int>("max_value");
+
+                    b.Property<int>("min_value");
 
                     b.Property<string>("name");
 

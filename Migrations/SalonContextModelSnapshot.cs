@@ -60,7 +60,9 @@ namespace hair_salon.Migrations
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("max_value");
+                    b.Property<int>("max_value");
+
+                    b.Property<int>("min_value");
 
                     b.Property<string>("name");
 
@@ -138,7 +140,9 @@ namespace hair_salon.Migrations
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("max_value");
+                    b.Property<int>("max_value");
+
+                    b.Property<int>("min_value");
 
                     b.Property<string>("name");
 

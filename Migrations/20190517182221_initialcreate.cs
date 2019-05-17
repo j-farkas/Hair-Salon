@@ -47,7 +47,8 @@ namespace hair_salon.Migrations
                     id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
                     name = table.Column<string>(nullable: true),
-                    max_value = table.Column<string>(nullable: true)
+                    max_value = table.Column<int>(nullable: false),
+                    min_value = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -114,7 +115,8 @@ namespace hair_salon.Migrations
                     id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
                     name = table.Column<string>(nullable: true),
-                    max_value = table.Column<string>(nullable: true)
+                    max_value = table.Column<int>(nullable: false),
+                    min_value = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
