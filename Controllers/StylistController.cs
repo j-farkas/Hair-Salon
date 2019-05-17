@@ -50,6 +50,34 @@ namespace HairSalon.Controllers
       return RedirectToAction("Show", new {id = id});
     }
 
+    [HttpPost("/Stylist/{id}/Delete")]
+    public ActionResult Delete(int id)
+    {
+      var db = new SalonContext();
+      var stylist = db.stylist.Find(id);
+      db.stylist.Remove(stylist);
+      db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost("/Stylist/Delete")]
+    public ActionResult DeleteAllStylists()
+    {
+      var db = new SalonContext();
+      db.stylist.RemoveRange(db.stylist);
+      db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost("/Client/Delete")]
+    public ActionResult DeleteAllClients()
+    {
+      var db = new SalonContext();
+      db.client.RemoveRange(db.client);
+      db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
     [HttpPost("/Client")]
     public ActionResult Add(string Name, int Stylist)
     {
