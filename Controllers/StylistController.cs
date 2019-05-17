@@ -60,6 +60,17 @@ namespace HairSalon.Controllers
       return RedirectToAction("Index");
     }
 
+    [HttpPost("/Client/{id}/Delete")]
+    public ActionResult DeleteClient(int id)
+    {
+      var db = new SalonContext();
+      var client = db.client.Find(id);
+      int stylist = db.stylist.Find(client.stylist).id;
+      db.client.Remove(client);
+      db.SaveChanges();
+      return RedirectToAction("Show", new {id = stylist});
+    }
+
     [HttpPost("/Stylist/Delete")]
     public ActionResult DeleteAllStylists()
     {
