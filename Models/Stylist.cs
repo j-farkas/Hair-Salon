@@ -91,7 +91,7 @@ namespace HairSalon.Models
       if(hair > this.GetNextLevel())
       {
         theStylist.hair = 0;
-        level++;
+        theStylist.level++;
       }
       db.SaveChanges();
     }
@@ -157,7 +157,6 @@ namespace HairSalon.Models
       Random rnd = new Random();
       int luck = rnd.Next(2,6);
       Scissors scissors = db.scissors.Find(this.scissors);
-      //This is bad, think of a better way to do this
       if(scissors.suffix_1 > 7 && scissors.suffix_1 < 11)
       {
           luck += scissors.suffix_1_value;
@@ -169,14 +168,12 @@ namespace HairSalon.Models
 
       return luck;
     }
-
     public int GetDamage()
     {
 
       var db = new SalonContext();
       Scissors scissors = db.scissors.Find(this.scissors);
-      int damage = level;
-      //This is bad, think of a better way to do this
+      float damage = level;
       if(scissors.suffix_1 > 0 && scissors.suffix_1 < 7)
       {
           if(scissors.suffix_1 % 2 == 1)
@@ -197,18 +194,18 @@ namespace HairSalon.Models
       }
       if(scissors.prefix_1_value > 0)
       {
-        damage += (damage * (scissors.prefix_1_value / 100));
+        damage += scissors.prefix_1_value;
       }
 
       if(scissors.prefix_2_value > 0)
       {
-        damage += (damage * (scissors.prefix_2_value / 100));
+        damage += scissors.prefix_2_value;
       }
       if(damage < 1)
       {
         damage = 1;
       }
-      return damage;
+      return (int)damage;
     }
     public Scissors GetScissors()
     {
