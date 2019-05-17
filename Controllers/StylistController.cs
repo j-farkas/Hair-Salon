@@ -89,6 +89,12 @@ namespace HairSalon.Controllers
       return RedirectToAction("Index");
     }
 
+    [HttpGet("/Stylist/{id}/Replace")]
+    public ActionResult Replace(int id)
+    {
+      return View(new SalonContext().stylist.Find(id));
+    }
+
     [HttpPost("/Client")]
     public ActionResult Add(string Name, int Stylist)
     {
@@ -106,6 +112,20 @@ namespace HairSalon.Controllers
         var db = new SalonContext();
         Join addSpecialty = new Join{specialty_id = specialtyId, stylist_id = id};
         db.join.Add(addSpecialty);
+        db.SaveChanges();
+        return RedirectToAction("Show", new {id = id});
+    }
+
+    [HttpPost("/Stylist/{id}/Replace")]
+    public ActionResult ReplaceScissors(int id, bool change)
+    {
+        var db = new SalonContext();
+        Stylist theStylist = db.stylist.Find(id);
+        if(change == true)
+        {
+          theStylist.scissors = theStylist.drop;
+        }
+        theStylist.drop = 0;
         db.SaveChanges();
         return RedirectToAction("Show", new {id = id});
     }

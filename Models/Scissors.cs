@@ -31,19 +31,19 @@ namespace HairSalon.Models
       {
         theScis += ", "+db.prefix.Find(prefix_2).name;
       }
-      theScis += "Scissors";
+      theScis += " Scissors";
       if(suffix_1 > 0)
       {
         theScis += " Of " + db.suffix.Find(suffix_1).name;
       }
-      if(prefix_2 > 0)
+      if(suffix_2 > 0)
       {
         theScis += " and "+db.suffix.Find(suffix_2).name;
       }
       return theScis;
     }
 
-    
+
   }
 
 

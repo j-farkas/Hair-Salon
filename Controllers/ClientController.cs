@@ -56,8 +56,9 @@ namespace HairSalon.Controllers
       {
         //Client died
         db.client.Remove(client);
+        stylist.GetDrop();
         db.SaveChanges();
-        return RedirectToAction("Show", "Stylist", new {id = stylist.id});
+        return RedirectToAction("Replace", "Stylist", new {id = stylist.id});
       }
       return RedirectToAction("Show", new {id = id});
     }
