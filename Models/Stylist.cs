@@ -77,6 +77,7 @@ namespace HairSalon.Models
     {
       var db = new SalonContext();
       Client theClient = db.client.Find(id);
+      Stylist theStylist = db.stylist.Find(this.id);
       theClient.GrowHair();
       int damage = level;
       Scissors theScissors = db.scissors.Find(scissors);
@@ -87,16 +88,17 @@ namespace HairSalon.Models
       if(theClient.hair < damage)
       {
         //Client Dies
-        this.hair += theClient.hair;
-        theClient.hair = -1;
+        theStylist.hair += theClient.hair;
+        theClient.hair = 0;
+
       }else{
         //Client Lives
-        this.hair += damage;
+        theStylist.hair += damage;
         theClient.hair -= damage;
       }
       if(hair > this.GetNextLevel())
       {
-        hair = 0;
+        theStylist.hair = 0;
         level++;
       }
       db.SaveChanges();
