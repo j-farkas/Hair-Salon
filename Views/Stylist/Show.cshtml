@@ -2,9 +2,9 @@
 
 <h2>@Model.name - @Model.description</h2>
 <h4>Level: @Model.level</h4>
-@* <h4>@Model.GetScissorsName() / Damage: @Model.GetScissors() </h4> *@
+@* <h4>@Model.GetScissorsName() / Damage: @Model.GetDamage() </h4> *@
 <h6>Hair Collected: @Model.hair</h6>
-@* <h6>Hair Needed to next level:@Model.GetNextLevel()</h6> *@
+<h6>Hair Needed to next level:@Model.GetNextLevel()</h6>
 <h1>List of @Model.name's Clients:</h1>
 <ul>
   @foreach(var client in @Model.GetClients())

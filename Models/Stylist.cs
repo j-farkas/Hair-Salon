@@ -79,12 +79,7 @@ namespace HairSalon.Models
       Client theClient = db.client.Find(id);
       Stylist theStylist = db.stylist.Find(this.id);
       theClient.GrowHair();
-      int damage = level;
-      Scissors theScissors = db.scissors.Find(scissors);
-      if(theScissors != null)
-      {
-        damage += theScissors.GetDamage();
-      }
+      int damage = this.GetDamage();
       if(theClient.hair < damage)
       {
         //Client Dies
@@ -106,6 +101,12 @@ namespace HairSalon.Models
     public int GetNextLevel()
     {
       return level*level*10;
+    }
+
+    public int GetDamage()
+    {
+      int damage = level;
+      return damage;
     }
 
   }
