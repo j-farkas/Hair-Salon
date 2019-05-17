@@ -24,6 +24,22 @@ namespace HairSalon.Models
       return allItems;
     }
 
+    public List<Specialty> GetSpecialties()
+    {
+      var db = new SalonContext();
+      List<Specialty> allItems = new List<Specialty> {};
+      List<Join> joiner = db.join.ToList();
+      foreach (var item in joiner)
+      {
+
+        if(item.stylist_id == id && item.specialty_id > 0 )
+        {
+          allItems.Add(db.specialty.Find(item.specialty_id));
+        }
+      }
+      return allItems;
+    }
+
     public static List<Stylist> GetAll()
     {
       return new SalonContext().stylist.ToList();

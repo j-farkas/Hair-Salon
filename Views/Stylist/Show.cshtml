@@ -12,6 +12,13 @@
     <a href="/Client/@client.id">@client.name / Hair: @client.hair</a><br>
   }
 </ul>
+<h1>List of @Model.name's Specialties:</h1>
+<ul>
+  @foreach(var specialty in @Model.GetSpecialties())
+  {
+    <a href="/Specialty/@specialty.id">@specialty.name</a><br>
+  }
+</ul>
 
 <form class="" action="/Stylist/@Model.id/Edit" method="post">
   <button type="submit">CHANGE THAT NAME</button>
