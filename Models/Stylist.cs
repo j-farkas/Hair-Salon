@@ -8,13 +8,13 @@ namespace HairSalon.Models
 {
   public class Stylist
   {
-    private string name {get; set; }
-    private int id {get; set; }
-    private string description {get; set; }
-    private int level {get; set; }
-    private int hair {get; set; }
-    private int scissors {get; set; }
-    private int drop {get; set; }
+    public int id {get; set; }
+    public string name {get; set; }
+    public string description {get; set; }
+    public int level {get; set; }
+    public int hair {get; set; }
+    public int scissors {get; set; }
+    public int drop {get; set; }
 
 
     public List<Client> GetClients()

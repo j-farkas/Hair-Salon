@@ -3,7 +3,7 @@
 <ul>
   @foreach(var stylist in Model)
   {
-    <a href="Stylist/@stylist.GetId()">@stylist.GetName() Level: @stylist.GetLevel()</a><br>
+    <a href="Stylist/@stylist.id">@stylist.name Level: @stylist.level</a><br>
   }
 </ul>
 

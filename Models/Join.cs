@@ -12,6 +12,7 @@ namespace HairSalon.Models
     public int stylist_id { get; set; }
     public int prefix_id { get; set; }
     public int suffix_id { get; set; }
+    public int specialty_id { get; set; }
 
   }
 }

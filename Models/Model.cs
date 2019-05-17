@@ -15,7 +15,7 @@ namespace HairSalon.Models
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-      optionsBuilder.UseMySQL("server=localhost;database=hairsalon;user=root;password=root;port=8889;");
+      optionsBuilder.UseMySQL("server=localhost;database=jared_farkas;user=root;password=root;port=8889;");
     }
   }
 }
