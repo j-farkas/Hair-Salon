@@ -2,7 +2,7 @@
 
 namespace hair_salon.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class initialcreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -77,6 +77,19 @@ namespace hair_salon.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "specialty",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("MySQL:AutoIncrement", true),
+                    name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_specialty", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "stylist",
                 columns: table => new
                 {
@@ -122,6 +135,9 @@ namespace hair_salon.Migrations
 
             migrationBuilder.DropTable(
                 name: "scissors");
+
+            migrationBuilder.DropTable(
+                name: "specialty");
 
             migrationBuilder.DropTable(
                 name: "stylist");

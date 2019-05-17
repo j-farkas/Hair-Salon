@@ -9,5 +9,21 @@ namespace HairSalon.Models
   {
     public string name { get; set; }
     public int id { get; set; }
+
+    public List<Stylist> GetStylists()
+    {
+      var db = new SalonContext();
+      List<Stylist> allItems = new List<Stylist> {};
+      List<Join> joiner = db.join.ToList();
+      foreach (var item in joiner)
+      {
+
+        if(item.specialty_id == id && item.stylist_id > 0 )
+        {
+          allItems.Add(db.stylist.Find(item.stylist_id));
+        }
+      }
+      return allItems;
+    }
   }
 }

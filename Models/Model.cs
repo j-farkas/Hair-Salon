@@ -12,6 +12,7 @@ namespace HairSalon.Models
     public DbSet<Join> join { get; set; }
     public DbSet<Suffix> suffix { get; set; }
     public DbSet<Prefix> prefix { get; set; }
+    public DbSet<Specialty> specialty { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

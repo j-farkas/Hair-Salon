@@ -99,6 +99,18 @@ namespace hair_salon.Migrations
                     b.ToTable("scissors");
                 });
 
+            modelBuilder.Entity("HairSalon.Models.Specialty", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("name");
+
+                    b.HasKey("id");
+
+                    b.ToTable("specialty");
+                });
+
             modelBuilder.Entity("HairSalon.Models.Stylist", b =>
                 {
                     b.Property<int>("id")

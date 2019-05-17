@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace hair_salon.Migrations
 {
     [DbContext(typeof(SalonContext))]
-    [Migration("20190517160645_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20190517171110_initialcreate")]
+    partial class initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -99,6 +99,18 @@ namespace hair_salon.Migrations
                     b.HasKey("id");
 
                     b.ToTable("scissors");
+                });
+
+            modelBuilder.Entity("HairSalon.Models.Specialty", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("name");
+
+                    b.HasKey("id");
+
+                    b.ToTable("specialty");
                 });
 
             modelBuilder.Entity("HairSalon.Models.Stylist", b =>

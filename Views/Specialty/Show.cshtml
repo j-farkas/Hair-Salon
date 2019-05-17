@@ -1,0 +1,10 @@
+@using HairSalon.Models;
+
+<h2>@Model.name</h2>
+
+<ul>
+  @foreach(var stylist in @Model.GetStylists())
+  {
+    <a href="/Stylist/@stylist.id">@stylist.name</a><br>
+  }
+</ul>
