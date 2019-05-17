@@ -113,7 +113,7 @@ _Assigns clients to an employee within the list of employees. Should a client ha
 
 ## Known Bugs
 
-_None currently known_
+_Can't Connect to Test database with Entity_
 
 ## Support and contact details
 
