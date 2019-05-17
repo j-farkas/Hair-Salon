@@ -1,0 +1,13 @@
+<form class="" action="/Client" method="post">
+  <label for="Name">Name: </label>
+  <input id="Name" name="Name" type="text"><br><br>
+  <label for="Stylist">Stylist </label>
+  <select name="Stylist">
+    @foreach(var stylist in Model)
+    {
+      <option value="@stylist.id">@stylist.name</option>
+    }
+  </select>
+  <br>
+<button type="submit">Submit</button>
+</form>

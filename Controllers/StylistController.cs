@@ -24,7 +24,7 @@ namespace HairSalon.Controllers
     public ActionResult New(string Name, string Description)
     {
         var db = new SalonContext();
-        Stylist addStylist = new Stylist{name = Name, description = Description};
+        Stylist addStylist = new Stylist{name = Name, description = Description, level = 1};
         db.stylist.Add(addStylist);
         db.SaveChanges();
         return RedirectToAction("Index");
@@ -35,6 +35,16 @@ namespace HairSalon.Controllers
     {
       Stylist theStylist = new SalonContext().stylist.Find(id);
       return View(theStylist);
+    }
+
+    [HttpPost("/Client")]
+    public ActionResult Add(string Name, int Stylist)
+    {
+        var db = new SalonContext();
+        Client addClient = new Client{name = Name, stylist = Stylist, hair = 20};
+        db.client.Add(addClient);
+        db.SaveChanges();
+        return RedirectToAction("Show", new {id = Stylist});
     }
   }
 }

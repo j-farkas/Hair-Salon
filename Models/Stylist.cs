@@ -20,16 +20,7 @@ namespace HairSalon.Models
     public List<Client> GetClients()
     {
       var db = new SalonContext();
-      List<Client> allItems = new List<Client> {};
-      List<Join> joiner = db.join.ToList();
-      foreach (var item in joiner)
-      {
-
-        if(item.stylist_id == id && item.client_id > 0 )
-        {
-          allItems.Add(db.client.Find(item.client_id));
-        }
-      }
+      List<Client> allItems = db.client.Where(c => c.stylist == id).ToList();
       return allItems;
     }
   }
