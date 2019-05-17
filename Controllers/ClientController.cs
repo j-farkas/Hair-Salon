@@ -39,6 +39,26 @@ namespace HairSalon.Controllers
         client.name = Name;
       }
       db.SaveChanges();
+
+
+      return RedirectToAction("Show", new {id = id});
+    }
+
+    [HttpPost("/Client/{id}/Cut")]
+    public ActionResult CutHair(int id)
+    {
+      var db = new SalonContext();
+      Client client = db.client.Find(id);
+      Stylist stylist = db.stylist.Find(client.stylist);
+      stylist.CutHair(client.id);
+      client = db.client.Find(id);
+      if(client.hair <= 0)
+      {
+        //Client died
+        db.client.Remove(client);
+        db.SaveChanges();
+        return RedirectToAction("Show", "Stylist", new {id = stylist.id});
+      }
       return RedirectToAction("Show", new {id = id});
     }
   }

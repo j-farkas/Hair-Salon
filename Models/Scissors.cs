@@ -18,5 +18,12 @@ namespace HairSalon.Models
     public int suffix_2_value { get; set; }
     public int quality {get; set;}
     public int id { get; set; }
+
+    public int GetDamage()
+    {
+      return id;
+    }
   }
+
+
 }

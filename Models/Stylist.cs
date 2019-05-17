@@ -1,3 +1,5 @@
+
+
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System;
@@ -70,5 +72,39 @@ namespace HairSalon.Models
     {
       return new SalonContext().stylist.ToList();
     }
+
+    public void CutHair(int id)
+    {
+      var db = new SalonContext();
+      Client theClient = db.client.Find(id);
+      theClient.GrowHair();
+      int damage = level;
+      Scissors theScissors = db.scissors.Find(scissors);
+      if(theScissors != null)
+      {
+        damage += theScissors.GetDamage();
+      }
+      if(theClient.hair < damage)
+      {
+        //Client Dies
+        this.hair += theClient.hair;
+        theClient.hair = -1;
+      }else{
+        //Client Lives
+        this.hair += damage;
+        theClient.hair -= damage;
+      }
+      if(hair > this.GetNextLevel())
+      {
+        hair = 0;
+        level++;
+      }
+      db.SaveChanges();
+    }
+    public int GetNextLevel()
+    {
+      return level*level*10;
+    }
+
   }
 }

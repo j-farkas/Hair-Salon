@@ -93,7 +93,8 @@ namespace HairSalon.Controllers
     public ActionResult Add(string Name, int Stylist)
     {
         var db = new SalonContext();
-        Client addClient = new Client{name = Name, stylist = Stylist, hair = 20};
+        Random rnd = new Random();
+        Client addClient = new Client{name = Name, stylist = Stylist, hair = rnd.Next(10,50)};
         db.client.Add(addClient);
         db.SaveChanges();
         return RedirectToAction("Show", new {id = Stylist});

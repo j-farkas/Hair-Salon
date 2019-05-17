@@ -36,5 +36,12 @@ namespace HairSalon.Models
       var db = new SalonContext();
       return db.stylist.Find(stylist).name;
     }
+
+    public void GrowHair()
+    {
+      var db = new SalonContext();
+      db.client.Where(c => c.id != id).ToList().ForEach(h => h.hair++);
+      db.SaveChanges();
+    }
   }
 }
