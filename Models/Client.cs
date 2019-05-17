@@ -30,5 +30,11 @@ namespace HairSalon.Models
       }
       return allItems;
     }
+
+    public string GetStylist()
+    {
+      var db = new SalonContext();
+      return db.stylist.Find(stylist).name;
+    }
   }
 }

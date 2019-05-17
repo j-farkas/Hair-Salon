@@ -11,8 +11,14 @@ namespace HairSalon.Controllers
 
     [HttpGet("/Client/New")]
     public ActionResult New()
-    {   
+    {
       return View(new SalonContext().stylist.ToList());
+    }
+
+    [HttpGet("/Client/{id}")]
+    public ActionResult Show(int id)
+    {   Client theClient = new SalonContext().client.Find(id);
+        return View(theClient);
     }
   }
 }

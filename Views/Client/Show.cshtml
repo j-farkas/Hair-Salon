@@ -1,0 +1,18 @@
+@using HairSalon.Models
+<h1>@Model.name!</h1>
+<h2>Current Stylist: @Model.GetStylist()</h2>
+<h6> Hair: @Model.hair</h6>
+<form class="" action="/Client/@Model.id/Cut" method="post">
+<button type="submit">Cut that hair!</button>
+</form>
+<form class="" action="/Client/@Model.id/" method="post">
+  <button type="submit">Change Stylist</button>
+  <select name="stylist">
+    @foreach(var stylist in Stylist.GetAll())
+    {
+      <option value="@stylist.id">@stylist.name</option>
+    }
+  </select>
+  <br>
+
+</form>

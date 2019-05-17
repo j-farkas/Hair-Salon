@@ -23,5 +23,10 @@ namespace HairSalon.Models
       List<Client> allItems = db.client.Where(c => c.stylist == id).ToList();
       return allItems;
     }
+
+    public static List<Stylist> GetAll()
+    {
+      return new SalonContext().stylist.ToList();
+    }
   }
 }

@@ -37,6 +37,19 @@ namespace HairSalon.Controllers
       return View(theStylist);
     }
 
+    [HttpPost("/Stylist/{id}/Edit")]
+    public ActionResult EditName(int id, string Name)
+    {
+      var db = new SalonContext();
+      var stylist = db.stylist.Find(id);
+      if (Name != null)
+      {
+        stylist.name = Name;
+      }
+      db.SaveChanges();
+      return RedirectToAction("Show", new {id = id});
+    }
+
     [HttpPost("/Client")]
     public ActionResult Add(string Name, int Stylist)
     {
